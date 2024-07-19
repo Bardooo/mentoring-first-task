@@ -1,0 +1,16 @@
+.addBtn {
+  background-color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+    transition: opacity 0.5s;
+  }
+}
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,7 @@
+<h1>List of users</h1>
+<div>
+  <button class="addBtn" mat-button (click)="onDialog()">Добавить пользователя</button>
+  <div class="users-list">
+    <app-user-card *ngFor="let user of users$ | async" [user]="user" (deleteEvent)="onDelete($event)" (editEvent)="onDialog($event)"></app-user-card>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="user-card">
+  <p>username: {{user.username}}</p>
+  <p>name: {{user.name}}</p>
+  <p>email: {{user.email}}</p>
+  <p>website: {{user.website}}</p>
+  <div class="user-card__buttons">
+    <button class="user-card__button" (click)="onDelete()">удалить</button>
+    <button class="user-card__button" (click)="onEdit()">редактировать</button>
+  </div>
+</div>
