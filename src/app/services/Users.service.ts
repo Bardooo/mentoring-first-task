@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { UsersApiService } from './UsersApi.service';
 import { BehaviorSubject } from 'rxjs';
@@ -25,7 +25,7 @@ export class UsersService {
       this.usersApiService.getUsers().subscribe(
         (data: User[]) => {
           this.usersSubject$.next(data);
-          this.localStorage.setUserstoLS("users", data)
+          this.localStorage.setUsersToLS("users", data)
         }
       )
     }
@@ -33,20 +33,20 @@ export class UsersService {
 
   deleteUser(id: number): void {
     const newList = this.usersSubject$.value.filter(user => user.id !== id)
-    this.localStorage.setUserstoLS("users", newList)
+    this.localStorage.setUsersToLS("users", newList)
     this.usersSubject$.next(newList)
   }
 
-  editUser(user: User) {
-    const key = this.usersSubject$.value.findIndex(el => el.id === user.id)
-    this.usersSubject$.value[key] = user
-    this.localStorage.setUserstoLS("users", this.usersSubject$.value)
+  editUser(user: User): void {
+    const id = this.usersSubject$.value.findIndex(item => item.id === user.id)
+    this.usersSubject$.value[id] = user
+    this.localStorage.setUsersToLS("users", this.usersSubject$.value)
     this.usersSubject$.next(this.usersSubject$.value)
   }
 
-  addUser(user: User) {
+  addUser(user: User): void {
     const newList = [...this.usersSubject$.value, user]
     this.usersSubject$.next(newList)
-    this.localStorage.setUserstoLS("users", newList)
+    this.localStorage.setUsersToLS("users", newList)
   }
 }

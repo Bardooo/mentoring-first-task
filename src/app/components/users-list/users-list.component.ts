@@ -39,7 +39,7 @@ export class UsersListComponent implements OnInit {
     const dialogRef = this.dialog.open<CreateEditUserComponent, {user?: User, isEdit: boolean}>(CreateEditUserComponent, {
       data: {
         user: user,
-        isEdit
+        isEdit: isEdit,
       }
     })
 

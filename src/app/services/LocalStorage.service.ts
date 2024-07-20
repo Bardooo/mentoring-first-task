@@ -10,7 +10,7 @@ export class LocalStorageService {
     return data ? JSON.parse(data) : null
   }
 
-  setUserstoLS<T>(key: string, data: T) {
+  setUsersToLS(key: string, data: User[]): void {
     localStorage.setItem(key, JSON.stringify(data))
   }
 }

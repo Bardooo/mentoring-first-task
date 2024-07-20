@@ -3,47 +3,43 @@
     <mat-dialog-content>
       <form [formGroup]="form">
         <div class="form-group">
-          <label for="username">ник: </label>
+          <label for="username">Ник:</label>
           <input
-            class="form-input"
             type="text"
-            placeholder="Введите имя пользователя"
+            placeholder="Введите ник"
             formControlName="username"
           >
         </div>
         <div class="form-group">
-          <label for="name">имя: </label>
+          <label for="name">Имя:</label>
           <input
-            class="form-input"
             type="text"
-            placeholder="Введите имя"
+            placeholder="Введите ник"
             formControlName="name"
           >
         </div>
         <div class="form-group">
-          <label for="email">почта: </label>
+          <label for="email">Почта:</label>
           <input
-            class="form-input"
             type="text"
-            placeholder="Введите почту"
+            placeholder="Введите ник"
             formControlName="email"
           >
         </div>
         <div class="form-group">
-          <label for="website">сайт: </label>
+          <label for="website">Сайт:</label>
           <input
-            class="form-input"
             type="text"
-            placeholder="Введите название сайта"
+            placeholder="Введите ник"
             formControlName="website"
           >
         </div>
       </form>
     </mat-dialog-content>
     <mat-dialog-content>
-      <div class="dialog-buttons">
-        <button class="dialog-buttons__close" mat-button mat-dialog-close>Закрыть</button>
-        <button class="dialog-buttons__submit" (click)="submitForm()" mat-button>{{data.isEdit ? "Сохранить" : "Добавить"}}</button>
+      <div class="form-buttons">
+        <button class="form-button" mat-button mat-dialog-close>Закрыть</button>
+        <button class="form-button" mat-button (click)="onSubmit()">{{data.isEdit ? "Сохранить" : "Добавить"}}</button>
       </div>
     </mat-dialog-content>
   </div>
