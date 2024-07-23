@@ -39,17 +39,12 @@ export class CreateEditUserComponent {
   private readonly dialogRef = inject(MatDialogRef<CreateEditUserComponent, {user: User, isEdit: boolean}>)
 
   public form: FormGroup = this.fb.group({
-    id: this.randomInteger(1, 1000),
+    id: Date.now() + Math.floor(Math.random() * 1000),
     username: ['', Validators.required],
     name: ['', Validators.required],
     email: ['', Validators.required],
     website: ['', Validators.required],
   })
-
-  randomInteger(min: number, max: number): number {
-    let rand = min + Math.random() * (max + 1 - min)
-    return Math.floor(rand)
-  }
 
   ngOnInit(): void {
     this.form.patchValue(this.data.user)
