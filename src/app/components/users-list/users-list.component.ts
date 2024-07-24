@@ -1,10 +1,12 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { UsersService } from "../../services/Users.service";
 import { UserCardComponent } from "../user-card/user-card.component";
 import { CommonModule } from "@angular/common";
 import { User } from "../../models/user";
 import { MatDialog } from "@angular/material/dialog";
 import { CreateEditUserComponent } from "../create-edit-user/create-edit-user.component";
+import { Store } from "@ngrx/store";
+import { usersActions } from "../../states/users/users.actions";
+import { selectUser } from "../../states/users/users.selectors";
 
 @Component({
   selector: 'users-list',
@@ -14,19 +16,16 @@ import { CreateEditUserComponent } from "../create-edit-user/create-edit-user.co
   styleUrl: './users-list.component.scss',
 })
 export class UsersListComponent implements OnInit {
-  public readonly users$ = this.usersService.users$
+  private readonly store = inject(Store)
+  public readonly users$ = this.store.select(selectUser)
   private readonly dialog = inject(MatDialog)
 
-  constructor(
-    private usersService: UsersService
-  ) {}
-
   ngOnInit(): void {
-    this.usersService.loadUsers()
+    this.store.dispatch(usersActions.loadUsers())
   }
 
   onDelete(id: number): void {
-    this.usersService.deleteUser(id)
+    this.store.dispatch(usersActions.deleteUser({id}))
   }
 
   onDialog(user?: User): void {
@@ -44,10 +43,11 @@ export class UsersListComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe((res) => {
+      console.log(res);
       if (isEdit && res) {
-        this.usersService.editUser(res)
+        this.store.dispatch(usersActions.editUser({ user: { ...user, ...res } }))
       } else if (res && isEdit === false) {
-        this.usersService.addUser(res)
+        this.store.dispatch(usersActions.addUser({ user: { ...user, ...res } }))
       }
     })
   }
