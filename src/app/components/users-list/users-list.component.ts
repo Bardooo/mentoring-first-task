@@ -46,7 +46,7 @@ export class UsersListComponent implements OnInit {
       console.log(res);
       if (isEdit && res) {
         this.store.dispatch(usersActions.editUser({ user: { ...user, ...res } }))
-      } else if (res && isEdit === false) {
+      } else if (res && !isEdit) {
         this.store.dispatch(usersActions.addUser({ user: { ...user, ...res } }))
       }
     })
